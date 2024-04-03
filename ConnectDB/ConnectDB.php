@@ -6,7 +6,8 @@ $dotenv = Dotenv::createImmutable(__DIR__ . "./../");
 $dotenv->load();
 
 /**
- * Class to perform the operation related to databses.
+ * Class ConnectDB.
+ *   To communicate with the database.
  */
 class ConnectDB
 {
@@ -42,6 +43,10 @@ class ConnectDB
    */
   private $host;
 
+  /**
+   * @var $conn.
+   *    To store the status the connection of database.
+   */
   private $conn;
 
   /**
@@ -65,10 +70,11 @@ class ConnectDB
   }
 
   /**
-   * To connect the database.
+   * Funtion connectDB().
+   *   To connect databse.
    * 
-   * Description:
-   *   It connect the database with php by PDO.
+   * @return $this->conn:
+   * 
    */
 
   function connectDB()

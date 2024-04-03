@@ -6,12 +6,12 @@ require('./../../User.php');
 require("./../../ConnectDB/ConnectDB.php");
 
 /**
- * @var bool $isUpdated;
+ * @var bool $isUpdated.
  *   For take information about is the password is updated or not.
  */
 $isUpdated = false;
 
-// Check if 'token' is set in the URL parameters
+// Check if 'token' is set in the URL parameters.
 if (!isset($_GET['token'])) {
   die("Token is not provided.");
 }

@@ -8,7 +8,10 @@ require("./../../User.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-
+/**
+ * @var array errors.
+ *   To Store the errors for respective fields.
+ */
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $user = new User();

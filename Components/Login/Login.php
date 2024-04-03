@@ -69,8 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       <div class="registerContent d-flex justify-center item.center flex-col">
         <div class="innerContent ">
           <h3 class="roboto-bold">Login here</h3>
-          <em style="color:red;"><?php echo $errors['userNotFound'];
-                                  $errors['invalidPassword']; ?></em>
+          <em style="color:red;">
+            <?php
+            echo $errors['userNotFound'];
+            $errors['invalidPassword'];
+            ?>
+          </em>
           <hr>
           <form action="" method="post" id="form" onsubmit="return validateLoginForm();">
             <div class="formDiv">

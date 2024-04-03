@@ -4,7 +4,7 @@ require("./ConnectDB/ConnectDB.php");
 require("./User.php");
 
 /**
- * Global array errors.
+ * @var array errors.
  *   Stores the error for already used email id.
  */
 $errors['alreadyEmail'] = "";
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(1, $email, PDO::PARAM_STR);
     $stmt->bindParam(2, $password_hash, PDO::PARAM_STR);
 
-    // set parameters and execute
+    // set parameters and execute.
     if ($stmt->execute()) {
 
       // Locate the page in Homepage after successfully registered.
