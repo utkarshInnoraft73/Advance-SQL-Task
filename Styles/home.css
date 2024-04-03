@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+  margin: 0;padding: 0;box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-black-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.wrapper{
+  padding: 50px 0;
+  margin: 40px 0;
+}
+
+.container{
+  width: 1200px;
+  margin: auto;
+}
+.d-flex{
+  display: flex;
+}
+.flex-col{
+  flex-direction: column;
+}
+.justify-center{
+  justify-content: center;
+}
+
+.item.center{
+  align-items: center;
+}
+
+form {
+  margin-top: 20px;
+}
+
+.registerContent{
+  height: 610px;
+}
+
+.innerContent{
+  /* background-color: rgb(96, 96, 226); */
+  background-image: linear-gradient(to right top, #aea9f7, #c3bdf9, #d7d2fa, #eae7fb, #fcfcfc);
+  padding: 40px 25px;
+  border-radius: 10px;
+  width: 400px;
+  margin: auto;
+}
+
+.innerContent h3, .innerContent p{
+  text-align: center;
+  margin: 12px;
+}
+
+.innerContent h3{
+  font-size: 25px;
+}
+
+input, textarea{
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 20px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border-radius: 10px;
+}
+
+.formDiv{
+  position: relative;
+}
+
+.formDiv i{
+  position: absolute;
+  right: 15px;
+  top: 30%;
+  visibility: hidden;
+}
+
+.formDiv.error .fa-circle-exclamation {
+  color: rgb(206, 12, 12);
+  visibility: visible;
+}
+
+.formDiv.success .fa-check{
+  color: rgb(11, 168, 11);
+  visibility: visible;
+}
+
+.formDiv.error input{
+  border: 1px solid rgb(206, 12, 12);
+}
+
+.formDiv.success input, .formDiv.success textarea{
+  border: 1px solid rgb(11, 168, 11) ;
+}
+
+.formDiv small{
+  visibility: hidden;
+}
+
+.formDiv.error small{
+  margin-left: 15px;
+  color: rgb(206, 12, 12);
+  visibility: visible;
+}
+
+.submitBtn{
+  background-color: rgb(60, 60, 250);
+  color: #ffff;
+}
+a{
+  text-decoration: none;
+  color: blue;
+}
