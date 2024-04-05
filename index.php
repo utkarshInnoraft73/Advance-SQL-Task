@@ -7,18 +7,19 @@ require("./User.php");
  * @var array errors.
  *   Stores the error for already used email id.
  */
-$errors['alreadyEmail'] = "";
+$errors['nullData'] = $errors['alreadyEmail'] = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $user = new User();
-  $errors = $user->getErrors();
-  $email = $user->validateEmail($_POST['email'], 'email');
-  $password = $_POST['password'];
 
-  // Checking if the password and confirm password is matching or not.
-  if ($_POST['cpassword'] != $password) {
-    $error['cpassword'] = "Confirm password should be matched with password field.";
-  }
+  $user = new User();
+  // Call validation funtion to validate all the fields.
+  $user->validations($_POST['email'], 'email', $_POST['password'], 'password', $_POST['cpassword'], 'cpassword');
+  $email = $user->getEmail();
+  $password = $user->getPassword();
+  $cpassword = $user->getConfirmPassword();
+
+  // After validation check no field will be NULL.
+  if($email != NULL && $password != NULL && $cpassword != NULL) {
 
   // Converting the password in hash.
   $password_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -46,11 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($e->getCode() === '23000') {
 
       $errors['alreadyEmail'] = "This email is already used.";
-    } else {
-
-      die("Error: " . $e->getMessage());
     }
   }
+}
+}
+else{
+  $errors['nullData'] = "Please enter all the fields accordingly.";
 }
 
 // PHP ends here.
@@ -77,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="innerContent ">
           <h3 class="roboto-bold">Create account here</h3>
           <!-- Printing the Error msg. -->
-          <em style="color: red;"><?php echo $errors['alreadyEmail']; ?></em>
+          <em style="color: red;"><?php echo $errors['alreadyEmail']; echo $errors['nullData']; ?></em>
           <hr>
           <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" id="form" onsubmit="return validateRegisterForm()">
 

@@ -1,28 +1,29 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
 /**
- * Constant NAMEPATTERN.
+ * @var NAMEPATTERN.
  *   To store the preg match for name pattern.
  */
 define('NAMEPATTERN', "/^[a-zA-Z-' ]*$/");
 
 /**
- * Constant PHONEPATTERN.
+ * @var PHONEPATTERN.
  *   To store the preg match for phone pattern.
  */
 define('PHONEPATTERN', "/^(\+91)[1-9][0-9]{9}$/");
 
 /**
- * Constant PASSWORDPATTERN.
+ * @var PASSWORDPATTERN.
  *   To store the preg match for password pattern.
  */
-define("PASSWORDPATTERN", "/^[1-9]$/");
+define("PASSWORDPATTERN", "/^(?=.*[A-Z])(?=.*[\W_])(?=.{5,10}$).*/");
 
 /**
  * User class.
  *  All required informations and operation related to user data.
- * 
+ *
  */
 class User
 {
@@ -45,13 +46,31 @@ class User
   public $marks = [];
 
   /**
+   * @var string $email.
+   *  To Store the email.
+   */
+  private $email;
+
+  /**
+   * @var string $password.
+   *  To Store the password.
+   */
+  private $password;
+
+  /**
+   * @var string $cpassword.
+   *  To Store the confirm password.
+   */
+  private $cpassword;
+
+  /**
    * Funtion setError().
    *  To set error.
-   * 
+   *
    * @param string $field.
-   *   Field name for which error is setting.
+   *  Field name for which error is setting.
    * @param string errMsg.
-   *   Error message for that field.
+   *  Error message for that field.
    */
   public function setError($field, $errMsg)
   {
@@ -61,11 +80,11 @@ class User
   /**
    * Function setSubject().
    *  To set the subjects.
-   * 
+   *
    * @param integer $index.
-   *   Index.
+   *  Index.
    * @param string $subject.
-   *   Subject name. 
+   *  Subject name.
    */
   function setSubject($index, $data)
   {
@@ -75,11 +94,11 @@ class User
   /**
    * Function setMarks().
    *  To set the marks.
-   * 
+   *
    * @param integer $index.
-   *   Index.
+   *  Index.
    * @param string $marks.
-   *   marks name. 
+   *  marks name.
    */
   function setMarks($index, $data)
   {
@@ -89,14 +108,14 @@ class User
   /**
    * Function checkEmpty().
    *  To check if the data is empty or not.
-   * 
+   *
    * @param string $data.
-   *   Name data given by user.
+   *  Name data given by user.
    * @param string $field.
-   *   Field name for which field validation is happening.
-   * 
+   *  Field name for which field validation is happening.
+   *
    * @return string data.
-   *   If all validation is true the return data.
+   *  If all validation is true the return data.
    */
   public function checkEmpty($data, $field)
   {
@@ -108,14 +127,14 @@ class User
   /**
    * Function validateName().
    *  To validate name field.
-   * 
+   *
    * @param string $name.
-   *   Name data given by user.
+   *  Name data given by user.
    * @param string $field.
-   *   Field name for which field validation is happening.
-   * 
+   *  Field name for which field validation is happening.
+   *
    * @return string $name.
-   *   If all validation is true the return name.
+   *  If all validation is true the return name.
    */
   public function validateName($name, $field)
   {
@@ -133,14 +152,14 @@ class User
   /**
    * Function validatePhone().
    *  To validate phone field.
-   * 
+   *
    * @param string $name.
-   *   Name data given by user.
+   *  Name data given by user.
    * @param string $field.
-   *   Field name for which field validation is happening.
-   * 
+   *  Field name for which field validation is happening.
+   *
    * @return string $name.
-   *   If all validation is true the return name.
+   *  If all validation is true the return name.
    */
   public function validatePhone($phone, $field)
   {
@@ -157,14 +176,14 @@ class User
   /**
    * Function validateEmail()
    *  To validate emailfield.
-   * 
+   *
    * @param string $email.
-   *   Email data given by user.
+   *  Email data given by user.
    * @param string $field.
-   *   Field name for which field validation is happening.
-   * 
+   *  Field name for which field validation is happening.
+   *
    * @return string $email.
-   *   If all validation is true the return email.
+   *  If all validation is true the return email.
    */
   public function validateEmail($email, $field)
   {
@@ -177,9 +196,57 @@ class User
   }
 
   /**
+   * Function validatePassword()
+   *  To validate passwordField.
+   *
+   * @param string $password.
+   *  Password data given by user.
+   * @param string $field.
+   *  Field name for which field validation is happening.
+   *
+   * @return string $password.
+   *  If all validation is true the return password.
+   */
+  public function validatePassword($password, $field)
+  {
+    $this->checkEmpty($password, $field);
+    if (!preg_match(PASSWORDPATTERN, $password)) {
+      $this->setError($field, "Please enter the valid password.");
+    }
+
+    else {
+      return $password;
+    }
+  }
+
+  /**
+   * Function validatePassword()
+   *  To validate passwordField.
+   *
+   * @param string $cpassword.
+   *  Confirm Password data given by user.
+   * @param string $password.
+   *  Password data given by user.
+   * @param string $field.
+   *  Field name for which field validation is happening.
+   *
+   * @return string $password.
+   *   If all validation is true the return password.
+   */
+  public function validateConfirmPassword($cpassword, $password, $field)
+  {
+    $this->checkEmpty($cpassword, $field);
+    if ($cpassword != $password) {
+      $this->setError($field, "Confirm Password should be same as password.");
+    } else {
+      return $cpassword;
+    }
+  }
+
+  /**
    * Function validateMarks().
    *  To validate marks and subject.
-   * 
+   *
    * @param string $data.
    *   Store the data is given by user.
    * @param string $field.
@@ -207,9 +274,70 @@ class User
   }
 
   /**
+   * Funtion validation();
+   *  To call the all validation function.
+   *
+   * @var string $emailInput.
+   *  Email input value.
+   * @var string $emailField.
+   *  Email field name for further use.
+   * @var string $passwordInput.
+   *  Password input value.
+   * @var string $passwordField.
+   *  Password field name for further use.
+   * @var string $cpasswordInput.
+   *  Confirm password value.
+   * @var string $cpasswordfield.
+   *  Confirm password field name for further use.
+   */
+  function validations(string $emailInput = '', string $emailField = '', string $passwordInput = '', string $passwordField = '', string $cpasswordInput = '', string $cpasswordField = '')
+  {
+
+    $this->email = $this->validateEmail($emailInput, $emailField);
+    $this->password = $this->validatePassword($passwordInput, $passwordField);
+    $this->cpassword = $this->validateConfirmPassword($cpasswordInput, $passwordInput, $cpasswordField);
+  }
+
+  /**
+   * Funtion getEmail().
+   *  To get email.
+   *
+   * @return string $email.
+   *  Email.
+   */
+  public function getEmail()
+  {
+    return $this->email;
+  }
+
+  /**
+   * Funtion getPassword().
+   *  To get password.
+   *
+   * @return string $password.
+   *  Password.
+   */
+  public function getPassword()
+  {
+    return $this->password;
+  }
+
+  /**
+   * Funtion getConfirmPassword().
+   *  To get confirm password.
+   *
+   * @return string $cpassword.
+   *  Confirm Password.
+   */
+  public function getConfirmPassword()
+  {
+    return $this->cpassword;
+  }
+
+  /**
    * Function getErrors().
    *  To get errors.
-   * 
+   *
    * @return $this->errors.
    *   Returns the errors.
    */
@@ -220,7 +348,7 @@ class User
   /**
    * Function getSubjects().
    *  To get subjects.
-   * 
+   *
    * @return $this->subjects.
    *   Returns the subjects.
    */
@@ -231,7 +359,7 @@ class User
   /**
    * Function getMarks().
    *  To get Marks.
-   * 
+   *
    * @return $this->marks.
    *   Returns the marks.
    */

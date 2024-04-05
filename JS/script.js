@@ -1,67 +1,73 @@
 /**
  * @const NAMEPATTRN.
- *    Store name pattern.
+ *  Store name pattern.
  */
 const NAMEPATTRN = /^[a-zA-Z'-]+$/;
 
 /**
+ * @const PASSWORDPATTERN.
+ *  Store password pattern.
+ */
+const PASSWORDPATTERN = /^(?=.*[A-Z])(?=.*[\W_])(?=.{5,10}$).*/;
+
+/**
  * @const PHONEPATTERN.
- *    Store phone pattern.
+ *  Store phone pattern.
  */
 const PHONEPATTERN = /^(\+91)[1-9][0-9]{9}$/;
 
 /**
  * Function to Validate the admin form.
  *
- * @returns {boolean} TRUE(If all validations are true) outerwise FALSE. 
+ * @returns {boolean} TRUE(If all validations are true) outerwise FALSE.
  */
 function validateAdmin() {
 
   /**
    * @const fnameInput.
-   *    Fetch first name field.
+   *  Fetch first name field.
    */
   const fnameInput = document.getElementById("fname");
 
   /**
    * @const lnameInput.
-   *    Fetch last name field.
+   *  Fetch last name field.
    */
   const lnameInput = document.getElementById("lname");
 
   /**
    * @const phoneInput.
-   *    Fetch phone field.
+   *  Fetch phone field.
    */
   const phoneInput = document.getElementById("phone");
 
   /**
    * @const marksInput.
-   *    Fetch marks field.
+   *  Fetch marks field.
    */
   const marksInput = document.getElementById("marks");
 
   /**
    * @const fname.
-   *   Store the first name value.
+   *  Store the first name value.
    */
   const fname = fnameInput.value.trim();
 
   /**
    * @const lname.
-   *   Store the last name value.
+   *  Store the last name value.
    */
   const lname = lnameInput.value.trim();
 
   /**
    * @const phone.
-   *   Store the phone value.
+   *  Store the phone value.
    */
   const phone = phoneInput.value.trim();
 
   /**
    * @const fname.
-   *   Store the marks value.
+   *  Store the marks value.
    */
   const marks = marksInput.value.trim();
 
@@ -75,31 +81,31 @@ function validateAdmin() {
 
 /**
  * Function validateLoginForm().
- *   To validate the login form details. 
+ *  To validate the login form details.
  *
  * @returns {boolean} TRUE(If all data is valid). Else FLASE.
  */
 function validateLoginForm() {
   /**
    * @const emailInput.
-   *   Fetched email field.
+   *  Fetched email field.
    */
   const emailInput = document.getElementById("email");
 
   /**
    * @const passwordInput.
-   *   Fetched password field.
+   *  Fetched password field.
    */
   const passwordInput = document.getElementById("password");
 
   /**
    * @const email.
-   *   Email field value.
+   *  Email field value.
    */
   const email = emailInput.value.trim();
   /**
      * @const password.
-     *   Password field value.
+     *  Password field value.
      */
   const password = passwordInput.value.trim();
 
@@ -110,45 +116,45 @@ function validateLoginForm() {
 }
 
 
-/** 
+/**
 * Function validateRegisterForm();
-*   To validate the user registration form.
-* 
+*  To validate the user registration form.
+*
 * @returns {boolean} TRUE (if all field are correctly filled.), else FALSE.
 */
 function validateRegisterForm() {
   /**
    * @const emailInput.
-   *   Fetched email field.
+   *  Fetched email field.
    */
   const emailInput = document.getElementById("email");
 
   /**
    * @const passwordInput.
-   *   Fetched password field.
+   *  Fetched password field.
    */
   const passwordInput = document.getElementById("password");
 
   /**
    * @const cpasswordInput.
-   *   Fetched confirm password field.
+   *  Fetched confirm password field.
    */
   const cpasswordInput = document.getElementById("cpassword");
 
   /**
    * @const email.
-   *   Email field value.
+   *  Email field value.
    */
   const email = emailInput.value.trim();
   /**
      * @const password.
-     *   Password field value.
+     *  Password field value.
      */
   const password = passwordInput.value.trim();
 
   /**
    * @const cpassword.
-   *   Confirm password field value.
+   *  Confirm password field value.
    */
   const cpassword = cpasswordInput.value.trim();
 
@@ -163,13 +169,13 @@ function validateRegisterForm() {
  * Function validateForgotPassword().
  *   To validate the forgot password form.
  *
- * @returns {boolean} TRUE(If all validations are true) otherwise FALSE. 
+ * @returns {boolean} TRUE(If all validations are true) otherwise FALSE.
  */
 function validateForgotPassword() {
 
   /**
    * @const emailInput.
-   *    Fetch email field from forgotPassword form. 
+   *    Fetch email field from forgotPassword form.
    */
   const emailInput = document.getElementById("email");
 
@@ -199,7 +205,7 @@ function checkEmail(email, fieldName) {
 * @param { string} name.
 *    Stores the name value.
 *
-* @param { string} nameField.  
+* @param { string} nameField.
 *    Stores the field name.
 */
 function checkMoreName(name, nameField) {
@@ -242,7 +248,7 @@ function checkMorePhone(phone, phoneInput) {
 /**
  * Function to check for subject marks.
  *
- * @param { string} marks.  
+ * @param { string} marks.
  *    Stores the textarea values.
  */
 function checkMoreMarks(marks, marksInput) {
@@ -273,15 +279,15 @@ function checkMoreMarks(marks, marksInput) {
 /**
    * Function to check for password.
    *
-   * @param { string} password.  
+   * @param { string} password.
    */
 function checkMorePassword(password, fieldName) {
   // Validate password.
   if (password === "") {
     return setError(fieldName, 'Password cannot be empty.')
   }
-  else if (password.length < 5) {
-    return setError(fieldName, 'Password length should be greater than 5 characters.');
+  else if (!PASSWORDPATTERN.test(password)) {
+    return setError(fieldName, 'Please enter valid password.(Utkarsh@)');
   }
   else {
     return setSuccess(fieldName);
@@ -291,7 +297,7 @@ function checkMorePassword(password, fieldName) {
 /**
  * Function to check for confirm password.
  *
- * @param { string} cpassword.  
+ * @param { string} cpassword.
  */
 function checkMoreCPassword(cpassword, password, fieldName) {
   // Validate Confirm password.
@@ -318,7 +324,7 @@ function checkMoreCPassword(cpassword, password, fieldName) {
  * @param {string} errorMsg.
  *    Stores error name.
  *
- * @return {boolean} FALSE. 
+ * @return {boolean} FALSE.
  */
 function setError(field, errorMsg) {
   const formDiv = field.parentNode;
@@ -330,7 +336,7 @@ function setError(field, errorMsg) {
 
 /**
  * Set the success message.
- * 
+ *
  * @param {string} field.
  *    input field name.
  *

@@ -15,9 +15,10 @@ use PHPMailer\PHPMailer\Exception;
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $user = new User();
+  $user->validations($_POST['email'], 'email');
 
   // Validate email.
-  $email = $user->validateEmail($_POST['email'], 'email');
+  $email = $user->getEmail();
 
   // Fetch all errors.
   $errors = $user->getErrors();
@@ -64,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // SMTP password.
         $mail->Password   = 'hjsywaewazhjfblw';
 
-        // Enable implicit TLS encryption.                  
+        // Enable implicit TLS encryption.
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
         //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`.
