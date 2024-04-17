@@ -173,16 +173,16 @@ function validateRegisterForm() {
  */
 function validateForgotPassword() {
 
-  /**
-   * @const emailInput.
-   *    Fetch email field from forgotPassword form.
-   */
+/**
+ * @const emailInput.
+ *    Fetch email field from forgotPassword form.
+ */
   const emailInput = document.getElementById("email");
 
-  /**
-   * @const email.
-   *    Value of email field in forgot password form.
-   */
+/**
+ * @const email.
+ *    Value of email field in forgot password form.
+ */
   const email = emailInput.value.trim();
   if (!checkEmail(email, emailInput)) {
     return false;
@@ -190,6 +190,16 @@ function validateForgotPassword() {
   return true;
 }
 
+/**
+ * Function checkEmail().
+ *  To check the email address.
+ *
+ * @param {string} email
+ * @param {string} fieldName
+ *
+ * @returns function setError().
+ *  If any error is coming else setSuccess().
+ */
 function checkEmail(email, fieldName) {
   // Validate email.
   if (email === "") {

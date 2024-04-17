@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 require('./../../vendor/autoload.php');
 require './../../User.php';
 
@@ -8,7 +6,7 @@ use Fpdf\Fpdf;
 
 /**
  * Global variable.
- * 
+ *
  * @var array $subjects.
  *   To store the subjects name.
  */
@@ -16,7 +14,7 @@ $subjects = [];
 
 /**
  * Global variable.
- * 
+ *
  * @var array $marks.
  *   To store the marks for respective subject.
  */

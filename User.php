@@ -260,12 +260,19 @@ class User
     $i = 0;
 
     foreach ($data as $lines) {
+
+      // Explode the lines by '|'.
       $parts = explode("|", $lines);
+
+      // Check if the parts[0] is numeric or not and part[1] is also nymeric of not
       if (is_numeric(trim($parts[0])) && is_numeric(trim($parts[1])) || (empty(trim($parts[0])) || empty(trim($parts[1])))) {
+
         $this->setError($field, "Please enter valid input.");
       } else if (is_numeric(trim($parts[0])) || !is_numeric(trim($parts[1]))) {
+
         $this->setError($field, "Please enter valid input. Ex(Suject|Marks)");
       } else {
+
         $this->setSubject($i, trim($parts[0]));
         $this->setMarks($i, trim($parts[1]));
         $i = $i + 1;

@@ -13,7 +13,7 @@ class ConnectDB
 {
   /**
    * To Stores the database name.
-   * 
+   *
    * @var string $database;
    *   Database name.
    */
@@ -21,7 +21,7 @@ class ConnectDB
 
   /**
    * To stores the use name.
-   * 
+   *
    * @var string $username;
    *   Username.
    */
@@ -29,7 +29,7 @@ class ConnectDB
 
   /**
    * To stores the password.
-   * 
+   *
    * @var string $password;
    *   Password.
    */
@@ -37,7 +37,7 @@ class ConnectDB
 
   /**
    * To stores the host.
-   * 
+   *
    * @var string $host;
    *   Host.
    */
@@ -51,7 +51,7 @@ class ConnectDB
 
   /**
    * Constructor to set the values.
-   * 
+   *
    * @var string $database;
    *   Database name;
    * @var string $username;
@@ -72,9 +72,9 @@ class ConnectDB
   /**
    * Funtion connectDB().
    *   To connect databse.
-   * 
-   * @return $this->conn:
-   * 
+   *
+   * @return object $this->conn:
+   *
    */
 
   function connectDB()

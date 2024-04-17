@@ -10,13 +10,23 @@ require ('./../../User.php');
 $errors['userNotFound'] = $errors['invalidPassword'] = $errors['nullCred'] = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+  // Create the instanse of class User.
   $user = new User();
+
+  // Call the validation method from user class.
   $user->validations($_POST['email'], 'email', $_POST['password'], 'password');
+
+  // Get he email;
   $email = $user->getEmail();
+
+  // Get Password.
   $password = $user->getPassword();
 
   if ($email != NULL && $password != NULL) {
     try {
+
+      // Connect the db.
       $db = new ConnectDB();
       $conn = $db->connectDB();
       $stmt = $conn->prepare("SELECT * FROM userdetail WHERE email = ?");
