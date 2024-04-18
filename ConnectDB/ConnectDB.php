@@ -77,7 +77,7 @@ class ConnectDB
    *
    */
 
-  function connectDB()
+  function connectDB() :object
   {
     try {
       $this->conn = new PDO("mysql:host={$this->host};dbname={$this->database}", $this->username, $this->password);

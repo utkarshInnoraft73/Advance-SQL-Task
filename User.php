@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 /**
  * @var NAMEPATTERN.
@@ -72,7 +70,7 @@ class User
    * @param string errMsg.
    *  Error message for that field.
    */
-  public function setError($field, $errMsg)
+  public function setError( string $field, string $errMsg)
   {
     $this->errors[$field] = $errMsg;
   }
@@ -86,7 +84,7 @@ class User
    * @param string $subject.
    *  Subject name.
    */
-  function setSubject($index, $data)
+  function setSubject(string $index, string $data)
   {
     $this->subjects[$index] = $data;
   }
@@ -100,7 +98,7 @@ class User
    * @param string $marks.
    *  marks name.
    */
-  function setMarks($index, $data)
+  function setMarks(string $index, string $data)
   {
     $this->marks[$index] = $data;
   }
@@ -117,7 +115,7 @@ class User
    * @return string data.
    *  If all validation is true the return data.
    */
-  public function checkEmpty($data, $field)
+  public function checkEmpty( string $data, string $field)
   {
     if (empty($data)) {
       $this->setError($field, "This field cannot be empty.");
@@ -136,7 +134,7 @@ class User
    * @return string $name.
    *  If all validation is true the return name.
    */
-  public function validateName($name, $field)
+  public function validateName(string $name, string $field)
   {
     $this->checkEmpty($name, $field);
 
@@ -161,7 +159,7 @@ class User
    * @return string $name.
    *  If all validation is true the return name.
    */
-  public function validatePhone($phone, $field)
+  public function validatePhone(string $phone, string $field)
   {
     $this->checkEmpty($phone, $field);
     if (strlen($phone) != 13) {
@@ -185,7 +183,7 @@ class User
    * @return string $email.
    *  If all validation is true the return email.
    */
-  public function validateEmail($email, $field)
+  public function validateEmail(string $email, string $field)
   {
     $this->checkEmpty($email, $field);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -207,7 +205,7 @@ class User
    * @return string $password.
    *  If all validation is true the return password.
    */
-  public function validatePassword($password, $field)
+  public function validatePassword( string $password, string $field)
   {
     $this->checkEmpty($password, $field);
     if (!preg_match(PASSWORDPATTERN, $password)) {
@@ -233,7 +231,7 @@ class User
    * @return string $password.
    *   If all validation is true the return password.
    */
-  public function validateConfirmPassword($cpassword, $password, $field)
+  public function validateConfirmPassword(string $cpassword, string $password,string $field)
   {
     $this->checkEmpty($cpassword, $field);
     if ($cpassword != $password) {
@@ -252,7 +250,7 @@ class User
    * @param string $field.
    *   Store the field name.
    */
-  public function validateMarks($marks, $field)
+  public function validateMarks(string $marks, string $field)
   {
     $this->checkEmpty($marks, $field);
 
@@ -345,10 +343,10 @@ class User
    * Function getErrors().
    *  To get errors.
    *
-   * @return $this->errors.
+   * @return array $this->errors.
    *   Returns the errors.
    */
-  public function getErrors()
+  public function getErrors():array
   {
     return $this->errors;
   }
@@ -356,10 +354,10 @@ class User
    * Function getSubjects().
    *  To get subjects.
    *
-   * @return $this->subjects.
+   * @return array $this->subjects.
    *   Returns the subjects.
    */
-  public function getSubjects()
+  public function getSubjects(): array
   {
     return $this->subjects;
   }
@@ -367,10 +365,10 @@ class User
    * Function getMarks().
    *  To get Marks.
    *
-   * @return $this->marks.
+   * @return array $this->marks.
    *   Returns the marks.
    */
-  public function getMarks()
+  public function getMarks(): array
   {
     return $this->marks;
   }

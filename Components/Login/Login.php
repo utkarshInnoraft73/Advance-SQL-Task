@@ -1,4 +1,5 @@
 <?php
+
 require ('../../vendor/autoload.php');
 require ('../../ConnectDB/ConnectDB.php');
 require ('./../../User.php');
@@ -59,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,6 +116,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       </div>
     </section>
   </body>
-
 </html>
-
